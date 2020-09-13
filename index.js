@@ -1,8 +1,7 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
-
-const writeFileAsync = util.promisify(fs.writeFile);
+const gm = require("./utils/generateMarkdown.js");
 
 // Required Fields
 // Title
@@ -15,8 +14,9 @@ const writeFileAsync = util.promisify(fs.writeFile);
 // Tests
 // Questions
 
-// array of questions for user
-const questions = [
+let readme_filled_out;
+
+inquirer.prompt([
     {
         type: "input",
         message: "What is your project title?",
@@ -71,20 +71,27 @@ const questions = [
         type: "input",
         message: "What is your github username?",
         name: "githubUsername"
+    },
+    {
+        type: "input",
+        message: "What is your github email?",
+        name: "githubEmail"
     }
-];
-
-inquirer.prompt(questions).then(function (response) {
-    if (response.confirm === response.password) {
-        console.log("Success!");
-    } else {
-        console.log("You forgot your password already?!");
-    }
+]).then(function (response) {
+    console.log(response);
+    readme_filled_out = gm(response);
+    writeToFile("README_Generated.md", readme_filled_out);
 });
 
 // function to write README file
 function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, function(err) {
+        if (err) {
+            return console.log(err);
+        }
 
+        console.log("Success!");
+    });
 }
 
 // function to initialize program
