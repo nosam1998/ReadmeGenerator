@@ -16,8 +16,7 @@ const gm = require("./utils/generateMarkdown.js");
 
 let readme_filled_out;
 
-inquirer.prompt([
-    {
+inquirer.prompt([{
         type: "input",
         message: "What is your project title?",
         name: "title"
@@ -27,18 +26,6 @@ inquirer.prompt([
         message: "What is the description of your project?",
         name: "description"
     },
-    // {
-    //     type: "input",
-    //     message: "Your Table of Contents (separated by a \",\")",
-    //     name: "tableOfContents"
-    // },
-    // {
-    //     type: "checkbox",
-    //     message: "What would you like to have in your table of contents?",
-    //     choices: [
-    //         ""
-    //     ]
-    // },
     {
         type: "input",
         message: "Installation instructions",
@@ -85,7 +72,7 @@ inquirer.prompt([
 
 // function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, function(err) {
+    fs.writeFile(fileName, data, function (err) {
         if (err) {
             return console.log(err);
         }
@@ -93,11 +80,3 @@ function writeToFile(fileName, data) {
         console.log("Success!");
     });
 }
-
-// function to initialize program
-function init() {
-
-}
-
-// function call to initialize program
-init();
