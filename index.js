@@ -65,7 +65,6 @@ inquirer.prompt([{
         name: "githubEmail"
     }
 ]).then(function (response) {
-    console.log(response);
     readme_filled_out = gm(response);
     writeToFile("README_Generated.md", readme_filled_out);
 });
