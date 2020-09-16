@@ -37,7 +37,7 @@ ${data.usage}
 
 This project is licensed under the ${data.license}
 
-##  Contributing
+## Contributing
 
 ${data.contribute}
 
